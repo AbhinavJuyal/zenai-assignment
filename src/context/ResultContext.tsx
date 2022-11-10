@@ -6,6 +6,7 @@ interface IResultContext {
   filter: IFilter;
   wrapSetFilter: (obj: any) => void;
   productData: IProduct[];
+  search: (searchValue: string) => void;
 }
 
 const ResultContext = createContext<IResultContext | null>(null);
@@ -41,7 +42,6 @@ const isFilterKey = (key: string, filter: IFilter): key is IFilterKeys =>
 export const ResultProvider: React.FC<Props> = ({ children }) => {
   const [filter, setFilter] = useState<IFilter>(defFilterState);
   const [productData, setProductData] = useState<IProduct[]>(products);
-  const [search, setSearch] = useState<string>("");
   const isFirstRender = useIsFirstRender();
 
   const generateResult = () => {
@@ -81,15 +81,9 @@ export const ResultProvider: React.FC<Props> = ({ children }) => {
     };
 
     const result = products.filter(filterProduct);
-    // console.log("jhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
     console.log(result);
     return result;
   };
-
-  useEffect(() => {
-    if (isFirstRender) return;
-    setProductData(() => generateResult());
-  }, [filter]);
 
   const wrapSetFilter = (obj: HTMLInputElement) => {
     const { name, value, checked } = obj;
@@ -116,11 +110,26 @@ export const ResultProvider: React.FC<Props> = ({ children }) => {
     }));
   };
 
+  const search = (searchValue: string) => {
+    setProductData(() =>
+      generateResult().filter((product) =>
+        product.title.toLowerCase().includes(searchValue)
+      )
+    );
+  };
+
+  useEffect(() => {
+    if (isFirstRender) return;
+    setProductData(() => generateResult());
+  }, [filter]);
+
   const value: IResultContext = {
     filter,
     wrapSetFilter,
     productData,
+    search,
   };
+
   return (
     <ResultContext.Provider value={value}>{children}</ResultContext.Provider>
   );

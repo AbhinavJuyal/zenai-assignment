@@ -3,9 +3,10 @@ import SearchIcon from "../../assets/SearchIcon";
 import styles from "./SearchBar.module.scss";
 
 interface ISearchBar {
+  initialValue: string;
+  onSubmit: (searchValue: string) => void;
   onFocus?: ChangeEventHandler<HTMLInputElement>;
   onBlur?: ChangeEventHandler<HTMLInputElement>;
-  onSubmit: (searchValue: string) => void;
   alt?: boolean;
 }
 
@@ -14,8 +15,14 @@ const altStyles = {
   height: 50,
 };
 
-const SearchBar = ({ onFocus, onBlur, onSubmit, alt }: ISearchBar) => {
-  const [value, setValue] = useState<string>("");
+const SearchBar = ({
+  onFocus,
+  onBlur,
+  onSubmit,
+  alt,
+  initialValue,
+}: ISearchBar) => {
+  const [value, setValue] = useState<string>(initialValue);
 
   const handleSubmit: React.ChangeEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
@@ -47,6 +54,7 @@ SearchBar.defaultProps = {
   onBlur: () => {},
   onSubmit: () => {},
   alt: false,
+  initialValue: "",
 };
 
 export default SearchBar;

@@ -21,8 +21,8 @@ const SuggestionBox = () => {
         <h4>Latest Trends</h4>
         <div className={styles.cards}>
           {cards &&
-            cards.slice(0, 4).map((card) => (
-              <div className={styles.card}>
+            cards.slice(0, 4).map((card, idx) => (
+              <div key={idx} className={styles.card}>
                 <img src={card.image} alt="product-image" />
                 <p className="">{card.title}</p>
               </div>
@@ -33,7 +33,7 @@ const SuggestionBox = () => {
         <h4>Popular Suggestions</h4>
         <ul className={styles.items}>
           {popularSuggestions &&
-            popularSuggestions.map((item) => <li>{item}</li>)}
+            popularSuggestions.map((item, idx) => <li key={idx}>{item}</li>)}
         </ul>
       </div>
     </div>
