@@ -4,3 +4,15 @@
   --head-black: #000000;
   --purple: #6d84ff;
 }
+
+@mixin mobile640 {
+  @media only screen and (max-width: 640px) {
+    @content;
+  }
+}
+
+@mixin mobile768 {
+  @media only screen and (max-width: 768px) {
+    @content;
+  }
+}

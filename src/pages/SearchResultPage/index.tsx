@@ -3,7 +3,7 @@ import SearchBar from "../../components/SearchBar";
 import SearchResult from "../../components/SearchResult";
 import { useResultCtx } from "../../context/ResultContext";
 import styles from "./SearchResultPage.module.scss";
-import { useEffect } from "react";
+import HamMenu from "../../components/HamMenu";
 
 const SearchResultPage = () => {
   const resultCtx = useResultCtx();
@@ -22,11 +22,16 @@ const SearchResultPage = () => {
           initialValue={resultCtx?.searchValue || ""}
           onSubmit={onSubmit}
         />
+        <div className={styles.hamMenu}>
+          <HamMenu />
+        </div>
       </nav>
       <main>
         <h1>Search Results</h1>
         <section>
-          <Filters />
+          <div className={styles.mobileHidden}>
+            <Filters />
+          </div>
           <SearchResult />
         </section>
       </main>

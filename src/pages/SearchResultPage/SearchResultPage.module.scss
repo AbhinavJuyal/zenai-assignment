@@ -1,3 +1,5 @@
+@use "../../styles/global.scss" as *;
+
 .searchResult {
   display: grid;
   grid-template-columns: 1fr;
@@ -6,10 +8,24 @@
   min-width: 100%;
   background: white;
   padding: 20px 40px;
+  @include mobile640 {
+    padding: 20px 10px;
+  }
 
   nav {
     height: fit-content;
     margin-bottom: 40px;
+    @include mobile640 {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .hamMenu {
+    display: none;
+    @include mobile640 {
+      display: block;
+    }
   }
 
   main {
@@ -28,6 +44,15 @@
       grid-template-rows: 1;
       gap: 24px;
       height: 100%;
+      @include mobile640 {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+
+  .mobileHidden {
+    @include mobile640 {
+      display: none;
     }
   }
 }

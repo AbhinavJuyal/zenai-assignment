@@ -1,3 +1,5 @@
+@use "../../styles/global.scss" as *;
+
 $img-width: 170px;
 $img-height: 220px;
 
@@ -24,6 +26,11 @@ $img-height: 220px;
   position: relative;
   z-index: 10;
 
+  @include mobile640 {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
   h4 {
     font-size: 21px;
     font-weight: 500;
@@ -33,6 +40,12 @@ $img-height: 220px;
   .trends {
     width: fit-content;
     margin-bottom: 40px;
+
+    @include mobile640 {
+      width: 100%;
+      overflow-x: scroll;
+      padding: 6px 0;
+    }
 
     .cards {
       display: flex;

@@ -31,7 +31,7 @@ const Filters = () => {
   };
 
   return (
-    <form onChange={handleFilterChange}>
+    <form className={styles.filterComp} onChange={handleFilterChange}>
       <Panel title="BRAND">
         <CheckBoxGroup
           options={genCheckBoxGroupProps(["Mango", "H&M"], "brand")}

@@ -1,3 +1,5 @@
+@use "../../styles/global.scss" as *;
+
 .searchPage {
   height: 100%;
   width: 100%;
@@ -12,5 +14,8 @@
 }
 
 .container {
+  @include mobile640 {
+    padding: 10px;
+  }
   width: 100%;
 }

@@ -1,3 +1,5 @@
+@use "../../styles/global.scss" as *;
+
 .searchResult {
   display: flex;
   height: 700px;
@@ -15,6 +17,10 @@
   width: 239px;
   height: fit-content;
   position: relative;
+
+  @include mobile640 {
+    width: 180px;
+  }
 
   .wish {
     position: absolute;
