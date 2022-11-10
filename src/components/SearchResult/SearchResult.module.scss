@@ -27,7 +27,6 @@
     height: 305px;
     width: 239px;
     object-fit: cover;
-    margin-bottom: 16px;
   }
 
   .productInfo {
@@ -48,7 +47,7 @@
     .listPrice {
       font-weight: 600;
       font-size: 20px;
-      color: #6d84ff;
+      color: var(--purple);
     }
 
     .prices {
@@ -65,6 +64,35 @@
         font-size: 14px;
         line-height: 21px;
         margin: 2px 0;
+      }
+    }
+  }
+
+  .imgCover {
+    position: relative;
+    margin-bottom: 16px;
+
+    .viewProduct {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 40px;
+      background: var(--purple);
+      border: none;
+      color: #fff;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    &:hover {
+      .viewProduct {
+        opacity: 1;
       }
     }
   }

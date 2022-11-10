@@ -12,7 +12,12 @@ const ProductCard = ({ product }: IProductCard) => {
       <div className={styles.wish} onClick={() => setFilled((prev) => !prev)}>
         <Heart filled={filled} />
       </div>
-      <img src={product.image} alt={product.title} />
+      <div className={styles.imgCover}>
+        <img src={product.image} alt={product.title} />
+        <button type="button" className={styles.viewProduct}>
+          View Product
+        </button>
+      </div>
       <div className={styles.productInfo}>
         <div className={styles.title}>{product.title}</div>
         <div className={styles.prices}>
