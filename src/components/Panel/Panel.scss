@@ -1,0 +1,40 @@
+.panel {
+  .content {
+    height: min-content;
+    transition: height 2s ease-in-out;
+    overflow: hidden;
+  }
+}
+
+.panel.active {
+  .content {
+    height: 0;
+  }
+}
+
+.panelTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 24px 0;
+  cursor: pointer;
+
+  .title {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    color: var(--text-black);
+  }
+
+  .arrow {
+    display: flex;
+    place-items: center;
+    transition: all 0.2s ease-in-out;
+  }
+}
+
+.panelTitle.active {
+  .arrow {
+    transform: rotate(180deg);
+  }
+}

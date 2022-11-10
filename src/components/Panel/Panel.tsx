@@ -1,6 +1,6 @@
 import React, { MouseEventHandler, useState } from "react";
 import ArrowDown from "../../assets/ArrowDown";
-import styles from "./Panel.module.scss";
+import "./Panel.scss";
 
 interface IPanel {
   children?: React.ReactNode;
@@ -8,7 +8,7 @@ interface IPanel {
 }
 
 const Panel = ({ children, title }: IPanel) => {
-  const [show, setShow] = useState<boolean>(true);
+  const [show, setShow] = useState<boolean>(false);
 
   const handleOnClick: MouseEventHandler<HTMLDivElement> = () => {
     setShow((prev) => !prev);
@@ -19,15 +19,18 @@ const Panel = ({ children, title }: IPanel) => {
   };
 
   return (
-    <>
-      <div className={styles.panelTitle} onClick={handleOnClick}>
-        <span>{title}</span>
-        <span>
+    <div className={"panel" + " " + (show ? "active" : "")}>
+      <div
+        className={"panelTitle" + " " + (show ? "" : "active")}
+        onClick={handleOnClick}
+      >
+        <span className="title">{title}</span>
+        <span className="arrow">
           <ArrowDown />
         </span>
       </div>
       <div className="content">{children}</div>
-    </>
+    </div>
   );
 };
 

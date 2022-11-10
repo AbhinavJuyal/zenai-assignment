@@ -1,39 +1,38 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { faker } from "@faker-js/faker";
+import { Link } from "react-router-dom";
 
 import styles from "./SuggestionBox.module.scss";
-
-import { products as cards } from "../../products.js";
+import { useGlobalCtx } from "../../context/GlobalContext";
 
 const SuggestionBox = () => {
-  const [popularSuggestions, setPopularSuggestions] = useState<string[]>([]);
-
-  useEffect(() => {
-    const suggestions: string[] = new Array(5)
-      .fill("")
-      .map(() => faker.commerce.productName());
-    setPopularSuggestions(suggestions);
-  }, []);
+  const { products } = useGlobalCtx();
 
   return (
     <div className={styles.suggestions}>
       <div className={styles.trends}>
         <h4>Latest Trends</h4>
         <div className={styles.cards}>
-          {cards &&
-            cards.slice(0, 4).map((card, idx) => (
-              <div key={idx} className={styles.card}>
-                <img src={card.image} alt="product-image" />
-                <p className="">{card.title}</p>
-              </div>
+          {products &&
+            products.slice(0, 4).map((card, idx) => (
+              <Link key={idx} to={`/search?value=${card.title}`}>
+                <div className={styles.card}>
+                  <img src={card.image} alt="product-image" />
+                  <p>{card.title}</p>
+                </div>
+              </Link>
             ))}
         </div>
       </div>
       <div className={styles.popularSuggestions}>
         <h4>Popular Suggestions</h4>
         <ul className={styles.items}>
-          {popularSuggestions &&
-            popularSuggestions.map((item, idx) => <li key={idx}>{item}</li>)}
+          {products &&
+            products.slice(4, 10).map((item, idx) => (
+              <li key={idx}>
+                <Link to={`/search?value=${item.title}`}>{item.title}</Link>
+              </li>
+            ))}
         </ul>
       </div>
     </div>

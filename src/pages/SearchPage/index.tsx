@@ -18,7 +18,7 @@ const SearchPage = () => {
   };
 
   const onFormSubmit = (searchValue: string) => {
-    navigate(`/search/?value=${searchValue}`);
+    navigate(`/search?value=${searchValue}`);
   };
 
   return (
