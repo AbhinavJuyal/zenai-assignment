@@ -1,4 +1,5 @@
 import React, { useState, useContext, createContext, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { products } from "../products";
 import useIsFirstRender from "../utils/useIsFirstRender";
 
@@ -7,9 +8,8 @@ interface IResultContext {
   wrapSetFilter: (obj: any) => void;
   productData: IProduct[];
   search: (searchValue: string) => void;
+  searchValue: string;
 }
-
-const ResultContext = createContext<IResultContext | null>(null);
 
 interface Props {
   children: React.ReactNode;
@@ -30,6 +30,8 @@ type IFilterKeys = keyof IFilter;
 
 type IFilterValue = string | number | IMinMax;
 
+const ResultContext = createContext<IResultContext | null>(null);
+
 const defFilterState: IFilter = {
   brand: [],
   range: [],
@@ -39,12 +41,17 @@ const defFilterState: IFilter = {
 const isFilterKey = (key: string, filter: IFilter): key is IFilterKeys =>
   Object.keys(filter).includes(key);
 
+const paramKey = "value";
 export const ResultProvider: React.FC<Props> = ({ children }) => {
   const [filter, setFilter] = useState<IFilter>(defFilterState);
   const [productData, setProductData] = useState<IProduct[]>(products);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchValue, setSearchValue] = useState<string>(
+    searchParams.get(paramKey) || ""
+  );
   const isFirstRender = useIsFirstRender();
 
-  const generateResult = () => {
+  const generateResult = (searchKey = searchValue) => {
     const filterProduct = (product: IProduct) => {
       const validFilter = {
         brand: false,
@@ -80,8 +87,14 @@ export const ResultProvider: React.FC<Props> = ({ children }) => {
       return Object.values(validFilter).reduce((prev, curr) => prev && curr);
     };
 
-    const result = products.filter(filterProduct);
-    console.log(result);
+    const searchProduct = (arr: IProduct[]) =>
+      searchKey === ""
+        ? arr
+        : arr.filter((product) =>
+            product.title.toLowerCase().includes(searchKey)
+          );
+
+    const result = searchProduct(products.filter(filterProduct));
     return result;
   };
 
@@ -110,13 +123,14 @@ export const ResultProvider: React.FC<Props> = ({ children }) => {
     }));
   };
 
-  const search = (searchValue: string) => {
-    setProductData(() =>
-      generateResult().filter((product) =>
-        product.title.toLowerCase().includes(searchValue)
-      )
-    );
+  const search = (newSearchValue: string) => {
+    setSearchValue(newSearchValue);
+    setProductData(() => generateResult(newSearchValue));
   };
+
+  useEffect(() => {
+    search(searchValue);
+  }, []);
 
   useEffect(() => {
     if (isFirstRender) return;
@@ -128,6 +142,7 @@ export const ResultProvider: React.FC<Props> = ({ children }) => {
     wrapSetFilter,
     productData,
     search,
+    searchValue,
   };
 
   return (

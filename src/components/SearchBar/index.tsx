@@ -35,11 +35,11 @@ const SearchBar = ({
       <form onSubmit={handleSubmit}>
         <input
           value={value}
+          onChange={(e) => setValue(e.target.value)}
           onFocus={onFocus}
           onBlur={onBlur}
           type="text"
           placeholder="Search"
-          onChange={(e) => setValue(e.target.value)}
         />
         <button className={styles.searchButton}>
           <SearchIcon size={alt ? 24 : 32} />
