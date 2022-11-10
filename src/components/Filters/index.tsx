@@ -2,7 +2,7 @@ import CheckBoxGroup from "../CheckBoxGroup";
 import Panel from "../Panel/Panel";
 import styles from "./Filters.module.scss";
 import ReactStars from "react-stars";
-import { useResultCtx } from "../../context/FilterContext";
+import { useResultCtx } from "../../context/ResultContext";
 import { ChangeEventHandler } from "react";
 
 const genCheckBoxGroupProps = (arr: string[], name: string) =>

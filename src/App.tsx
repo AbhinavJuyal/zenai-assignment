@@ -1,4 +1,4 @@
-import SearchPage from "./pages/SearchPage/SearchPage";
+import SearchPage from "./pages/SearchPage";
 import "./App.scss";
 
 import logo from "./assets/logo.png";

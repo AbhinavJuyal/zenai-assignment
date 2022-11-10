@@ -7,6 +7,7 @@ const SearchPage = () => {
   const [show, setShow] = useState<boolean>(false);
 
   const onSearchBarFocus: ChangeEventHandler<HTMLInputElement> = (e) => {
+    e.stopPropagation();
     setShow(true);
   };
 

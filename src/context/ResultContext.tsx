@@ -1,5 +1,4 @@
 import React, { useState, useContext, createContext, useEffect } from "react";
-import { reduceEachTrailingCommentRange } from "typescript";
 import { products } from "../products";
 import useIsFirstRender from "../utils/useIsFirstRender";
 
@@ -42,6 +41,7 @@ const isFilterKey = (key: string, filter: IFilter): key is IFilterKeys =>
 export const ResultProvider: React.FC<Props> = ({ children }) => {
   const [filter, setFilter] = useState<IFilter>(defFilterState);
   const [productData, setProductData] = useState<IProduct[]>(products);
+  const [search, setSearch] = useState<string>("");
   const isFirstRender = useIsFirstRender();
 
   const generateResult = () => {

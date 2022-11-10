@@ -1,7 +1,7 @@
 import Filters from "../../components/Filters";
 import SearchBar from "../../components/SearchBar";
 import SearchResult from "../../components/SearchResult";
-import { ResultProvider } from "../../context/FilterContext";
+import { ResultProvider } from "../../context/ResultContext";
 import styles from "./SearchResultPage.module.scss";
 
 const SearchResultPage = () => {

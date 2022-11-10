@@ -1,7 +1,7 @@
 import styles from "./SearchResult.module.scss";
 import { useState } from "react";
 import Heart from "../../assets/Heart";
-import { useResultCtx } from "../../context/FilterContext";
+import { useResultCtx } from "../../context/ResultContext";
 
 const ProductCard = ({ product }: IProductCard) => {
   const [filled, setFilled] = useState<boolean>(true);
