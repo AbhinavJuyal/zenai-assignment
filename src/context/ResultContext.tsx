@@ -2,6 +2,7 @@ import React, { useState, useContext, createContext, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { products } from "../products";
 import useIsFirstRender from "../utils/useIsFirstRender";
+import { useGlobalCtx } from "./GlobalContext";
 
 interface IResultContext {
   filter: IFilter;
@@ -43,8 +44,11 @@ const isFilterKey = (key: string, filter: IFilter): key is IFilterKeys =>
 
 const paramKey = "value";
 export const ResultProvider: React.FC<Props> = ({ children }) => {
+  const globalCtx = useGlobalCtx();
   const [filter, setFilter] = useState<IFilter>(defFilterState);
-  const [productData, setProductData] = useState<IProduct[]>(products);
+  const [productData, setProductData] = useState<IProduct[]>(
+    globalCtx?.products as IProduct[]
+  );
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchValue, setSearchValue] = useState<string>(
     searchParams.get(paramKey) || ""
@@ -94,7 +98,9 @@ export const ResultProvider: React.FC<Props> = ({ children }) => {
             product.title.toLowerCase().includes(searchKey)
           );
 
-    const result = searchProduct(products.filter(filterProduct));
+    const result = searchProduct(
+      (globalCtx?.products as IProduct[]).filter(filterProduct)
+    );
     return result;
   };
 

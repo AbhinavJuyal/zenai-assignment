@@ -1,9 +1,4 @@
-import {
-  ChangeEventHandler,
-  FormEvent,
-  FormEventHandler,
-  useState,
-} from "react";
+import { ChangeEventHandler, useState } from "react";
 import SearchBar from "../../components/SearchBar";
 import SuggestionBox from "../../components/SuggestionBox";
 import styles from "./SearchPage.module.scss";
