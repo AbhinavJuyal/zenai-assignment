@@ -1,20 +1,7 @@
 import styles from "./SearchResult.module.scss";
-import { products } from "../../products";
 import { useState } from "react";
 import Heart from "../../assets/Heart";
-
-interface IProduct {
-  id: number;
-  title: string;
-  actualPrice: number;
-  listPrice: number;
-  image: string;
-  rating: { rate: number; count: number };
-}
-
-interface IProductCard {
-  product: IProduct;
-}
+import { useResultCtx } from "../../context/FilterContext";
 
 const ProductCard = ({ product }: IProductCard) => {
   const [filled, setFilled] = useState<boolean>(true);
@@ -41,11 +28,14 @@ const ProductCard = ({ product }: IProductCard) => {
 };
 
 const SearchResult = () => {
-  const [data, setData] = useState<any>(products);
+  const resultCtx = useResultCtx();
 
   return (
     <div className={styles.searchResult}>
-      {data && data.map((product: any) => <ProductCard product={product} />)}
+      {resultCtx?.productData &&
+        resultCtx?.productData.map((product: any) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
     </div>
   );
 };
