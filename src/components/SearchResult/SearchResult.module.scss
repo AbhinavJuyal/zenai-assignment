@@ -6,6 +6,7 @@
   justify-content: space-between;
   gap: 20px;
   flex-wrap: wrap;
+  padding: 16px 0;
 }
 
 .product {
@@ -19,11 +20,14 @@
     position: absolute;
     top: 10px;
     right: 10px;
+    cursor: pointer;
   }
 
   img {
-    height: 325px;
-    object-fit: contain;
+    height: 305px;
+    width: 239px;
+    object-fit: cover;
+    margin-bottom: 16px;
   }
 
   .productInfo {
@@ -31,7 +35,7 @@
     .title {
       width: fit-content;
       font-weight: 400;
-      font-size: 20px;
+      font-size: 18px;
       margin-bottom: 12px;
     }
     .actualPrice {
@@ -39,6 +43,7 @@
       font-size: 20px;
       text-decoration-line: line-through;
       margin-right: 4px;
+      color: var(--shallow-black);
     }
     .listPrice {
       font-weight: 600;
@@ -49,6 +54,18 @@
     .prices {
       display: flex;
       align-items: center;
+    }
+
+    .rating {
+      display: flex;
+      align-items: center;
+
+      span {
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 21px;
+        margin: 2px 0;
+      }
     }
   }
 }

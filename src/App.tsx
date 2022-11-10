@@ -1,10 +1,12 @@
-import SearchPage from "./pages/SearchPage";
 import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
-import "./App.scss";
-
-import logo from "./assets/logo.png";
-import SearchResultPage from "./pages/SearchResultPage";
 import { ResultProvider } from "./context/ResultContext";
+import { GlobalProvider } from "./context/GlobalContext";
+import SearchResultPage from "./pages/SearchResultPage";
+import SearchPage from "./pages/SearchPage";
+import logo from "./assets/logo.png";
+
+import "./App.scss";
+import "./styles/global.scss";
 
 const router = createBrowserRouter([
   {
@@ -27,7 +29,9 @@ function App() {
       <div className="logo">
         <img src={logo} alt="logo" />
       </div>
-      <RouterProvider router={router} />
+      <GlobalProvider>
+        <RouterProvider router={router} />
+      </GlobalProvider>
     </div>
   );
 }
