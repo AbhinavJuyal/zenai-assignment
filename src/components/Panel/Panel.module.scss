@@ -1,5 +1,3 @@
-@use "../../styles/globalVariables.scss" as *;
-
 .panelTitle {
   display: flex;
   align-items: center;
@@ -11,6 +9,6 @@
     font-weight: 500;
     font-size: 20px;
     line-height: 24px;
-    color: $text-black;
+    color: var(--text-black);
   }
 }

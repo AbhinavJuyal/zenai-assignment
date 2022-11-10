@@ -1,0 +1,54 @@
+.searchResult {
+  display: flex;
+  height: 700px;
+  max-height: 100%;
+  overflow-y: scroll;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  width: 239px;
+  height: fit-content;
+  position: relative;
+
+  .wish {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  img {
+    height: 325px;
+    object-fit: contain;
+  }
+
+  .productInfo {
+    line-height: 24px;
+    .title {
+      width: fit-content;
+      font-weight: 400;
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+    .actualPrice {
+      font-weight: 300;
+      font-size: 20px;
+      text-decoration-line: line-through;
+      margin-right: 4px;
+    }
+    .listPrice {
+      font-weight: 600;
+      font-size: 20px;
+      color: #6d84ff;
+    }
+
+    .prices {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
