@@ -84,7 +84,9 @@ export const ResultProvider: React.FC<Props> = ({ children }) => {
           return;
         }
 
-        value.forEach((val: IFilterValue) => (validFilter[key] = cond(val)));
+        let bool: any;
+        value.forEach((val: IFilterValue) => (bool = bool || cond(val)));
+        validFilter[key] = bool;
       });
 
       return Object.values(validFilter).reduce((prev, curr) => prev && curr);
