@@ -1,0 +1,21 @@
+.checkBoxGroup {
+  display: flex;
+  flex-direction: column;
+
+  .option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+
+    input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+    }
+    label {
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 19px;
+    }
+  }
+}

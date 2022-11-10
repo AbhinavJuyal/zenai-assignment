@@ -1,7 +1,8 @@
-import SearchPage from "./pages/SearchPage";
+import SearchPage from "./pages/SearchPage/SearchPage";
 import "./App.scss";
 
 import logo from "./assets/logo.png";
+import SearchResultPage from "./pages/SearchResultPage";
 
 function App() {
   return (
@@ -9,7 +10,8 @@ function App() {
       <div className="logo">
         <img src={logo} alt="logo" />
       </div>
-      <SearchPage />
+      {/* <SearchPage /> */}
+      <SearchResultPage />
     </div>
   );
 }
