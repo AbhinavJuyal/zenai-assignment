@@ -4,7 +4,7 @@ import Heart from "../../assets/Heart";
 import { useResultCtx } from "../../context/ResultContext";
 
 const ProductCard = ({ product }: IProductCard) => {
-  const [filled, setFilled] = useState<boolean>(true);
+  const [filled, setFilled] = useState<boolean>(false);
 
   return (
     <div className={styles.product}>

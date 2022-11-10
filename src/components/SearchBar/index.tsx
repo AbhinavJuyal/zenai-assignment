@@ -1,10 +1,11 @@
-import React, { ChangeEventHandler, useState } from "react";
+import React, { ChangeEventHandler, FormEvent, useState } from "react";
 import SearchIcon from "../../assets/SearchIcon";
 import styles from "./SearchBar.module.scss";
 
 interface ISearchBar {
   onFocus?: ChangeEventHandler<HTMLInputElement>;
   onBlur?: ChangeEventHandler<HTMLInputElement>;
+  onSubmit: (searchValue: string) => void;
   alt?: boolean;
 }
 
@@ -13,12 +14,13 @@ const altStyles = {
   height: 50,
 };
 
-const SearchBar = ({ onFocus, onBlur, alt }: ISearchBar) => {
+const SearchBar = ({ onFocus, onBlur, onSubmit, alt }: ISearchBar) => {
   const [value, setValue] = useState<string>("");
 
   const handleSubmit: React.ChangeEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     if (value === "") return;
+    onSubmit(value);
   };
 
   return (
@@ -43,6 +45,7 @@ const SearchBar = ({ onFocus, onBlur, alt }: ISearchBar) => {
 SearchBar.defaultProps = {
   onFocus: () => {},
   onBlur: () => {},
+  onSubmit: () => {},
   alt: false,
 };
 
