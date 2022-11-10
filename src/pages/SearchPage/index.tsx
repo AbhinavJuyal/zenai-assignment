@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useState } from "react";
+import { ChangeEventHandler, MouseEventHandler, useState } from "react";
 import SearchBar from "../../components/SearchBar";
 import SuggestionBox from "../../components/SuggestionBox";
 import styles from "./SearchPage.module.scss";
@@ -13,12 +13,16 @@ const SearchPage = () => {
     setShow(true);
   };
 
-  const onSearchBarBlur: ChangeEventHandler<HTMLInputElement> = (e) => {
-    setShow(false);
-  };
+  // const onSearchBarBlur: ChangeEventHandler<HTMLInputElement> = (e) => {
+  //   setShow(false);
+  // };
 
   const onFormSubmit = (searchValue: string) => {
     navigate(`/search?value=${searchValue}`);
+  };
+
+  const removeBox = () => {
+    setShow(false);
   };
 
   return (
@@ -26,10 +30,10 @@ const SearchPage = () => {
       <div className={styles.container}>
         <SearchBar
           onFocus={onSearchBarFocus}
-          onBlur={onSearchBarBlur}
+          // onBlur={onSearchBarBlur}
           onSubmit={onFormSubmit}
         />
-        {show && <SuggestionBox />}
+        {show && <SuggestionBox removeBox={removeBox} />}
       </div>
     </div>
   );

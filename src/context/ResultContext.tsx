@@ -1,6 +1,5 @@
 import React, { useState, useContext, createContext, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import { products } from "../products";
 import useIsFirstRender from "../utils/useIsFirstRender";
 import { useGlobalCtx } from "./GlobalContext";
 
